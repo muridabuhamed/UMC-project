@@ -24,10 +24,16 @@ class CoursesTable
                     ->label('Department')
                     ->searchable()
                     ->sortable(),
+                \Filament\Tables\Columns\TextColumn::make('teacher.name')
+                    ->label('Teacher')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 \Filament\Tables\Filters\SelectFilter::make('department')
                     ->relationship('department', 'name'),
+                \Filament\Tables\Filters\SelectFilter::make('teacher')
+                    ->relationship('teacher', 'name'),
             ])
             ->recordActions([
                 ViewAction::make(),

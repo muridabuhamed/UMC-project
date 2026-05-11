@@ -11,10 +11,16 @@ class Course extends Model
         'name',
         'description',
         'department_id',
+        'teacher_id',
     ];
 
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function teacher(): BelongsTo
+    {
+        return $this->belongsTo(Teacher::class);
     }
 }

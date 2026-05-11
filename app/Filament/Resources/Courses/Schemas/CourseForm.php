@@ -27,6 +27,12 @@ class CourseForm
                     ->options(Department::pluck('name', 'id'))
                     ->searchable()
                     ->nullable(),
+
+                Select::make('teacher_id')
+                    ->label('Teacher')
+                    ->relationship('teacher', 'name')
+                    ->searchable()
+                    ->nullable(),
             ]);
     }
 }

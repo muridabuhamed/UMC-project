@@ -17,6 +17,11 @@ class StatsOverview extends StatsOverviewWidget
                 ->icon('heroicon-o-user-group')
                 ->color('success'),
 
+            Stat::make('Total Teachers', \App\Models\Teacher::count())
+                ->description('Active faculty')
+                ->icon('heroicon-o-user-circle')
+                ->color('info'),
+
             Stat::make('Total Courses', \App\Models\Course::count())
                 ->description('Courses offered')
                 ->icon('heroicon-o-book-open')
