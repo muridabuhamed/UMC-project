@@ -36,6 +36,11 @@ class StatsOverview extends StatsOverviewWidget
                 ->description('Overall performance')
                 ->icon('heroicon-o-academic-cap')
                 ->color('primary'),
+
+            Stat::make('Total Revenue', '$' . number_format(\App\Models\FeePayment::where('status', 'completed')->sum('amount'), 2))
+                ->description('Completed payments')
+                ->icon('heroicon-o-banknotes')
+                ->color('success'),
         ];
     }
 }

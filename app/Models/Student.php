@@ -30,4 +30,14 @@ class Student extends Model
     {
         return $this->hasManyThrough(Grade::class, Enrollment::class);
     }
+
+    public function attendances(): HasManyThrough
+    {
+        return $this->hasManyThrough(Attendance::class, Enrollment::class);
+    }
+
+    public function feePayments(): HasMany
+    {
+        return $this->hasMany(FeePayment::class);
+    }
 }
