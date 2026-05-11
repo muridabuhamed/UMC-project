@@ -26,6 +26,11 @@ class StatsOverview extends StatsOverviewWidget
                 ->description('Active enrollments')
                 ->icon('heroicon-o-clipboard-document-list')
                 ->color('warning'),
+
+            Stat::make('Average Score', number_format(\App\Models\Grade::avg('score') ?? 0, 1) . '%')
+                ->description('Overall performance')
+                ->icon('heroicon-o-academic-cap')
+                ->color('primary'),
         ];
     }
 }
