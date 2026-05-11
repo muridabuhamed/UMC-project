@@ -39,6 +39,10 @@ class GradesTable
                 \Filament\Tables\Filters\SelectFilter::make('course')
                     ->relationship('enrollment.course', 'name'),
             ])
+            ->headerActions([
+                \Filament\Actions\ExportAction::make()
+                    ->exporter(\App\Filament\Exports\GradeExporter::class),
+            ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

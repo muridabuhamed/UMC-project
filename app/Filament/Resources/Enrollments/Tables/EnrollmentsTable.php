@@ -37,6 +37,10 @@ class EnrollmentsTable
                 \Filament\Tables\Filters\SelectFilter::make('course')
                     ->relationship('course', 'name'),
             ])
+            ->headerActions([
+                \Filament\Actions\ExportAction::make()
+                    ->exporter(\App\Filament\Exports\EnrollmentExporter::class),
+            ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

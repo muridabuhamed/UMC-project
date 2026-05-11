@@ -31,6 +31,10 @@ class StudentsTable
                 \Filament\Tables\Filters\SelectFilter::make('department')
                     ->relationship('department', 'name'),
             ])
+            ->headerActions([
+                \Filament\Actions\ExportAction::make()
+                    ->exporter(\App\Filament\Exports\StudentExporter::class),
+            ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
