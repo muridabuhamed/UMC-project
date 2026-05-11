@@ -28,7 +28,8 @@ class StudentsTable
                     ->sortable(),
             ])
             ->filters([
-                //
+                \Filament\Tables\Filters\SelectFilter::make('department')
+                    ->relationship('department', 'name'),
             ])
             ->recordActions([
                 ViewAction::make(),

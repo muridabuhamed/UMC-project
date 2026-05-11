@@ -14,14 +14,17 @@ class StatsOverview extends StatsOverviewWidget
         return [
             Stat::make('Total Students', Student::count())
                 ->description('Registered students')
+                ->icon('heroicon-o-user-group')
                 ->color('success'),
 
-            Stat::make('Total Departments', Department::count())
-                ->description('Active departments')
+            Stat::make('Total Courses', \App\Models\Course::count())
+                ->description('Courses offered')
+                ->icon('heroicon-o-book-open')
                 ->color('info'),
 
-            Stat::make('Latest Year', Student::max('year') ?? 1)
-                ->description('Highest study year enrolled')
+            Stat::make('Total Enrollments', \App\Models\Enrollment::count())
+                ->description('Active enrollments')
+                ->icon('heroicon-o-clipboard-document-list')
                 ->color('warning'),
         ];
     }

@@ -20,7 +20,9 @@ class CourseResource extends Resource
 {
     protected static ?string $model = Course::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Academic';
 
     protected static ?string $recordTitleAttribute = 'name';
 
