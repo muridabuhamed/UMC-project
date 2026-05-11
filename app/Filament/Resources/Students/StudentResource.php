@@ -16,9 +16,25 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
+use Illuminate\Database\Eloquent\Builder;
 
 class StudentResource extends Resource
 {
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (auth()->user()->isTeacher()) {
+            return $query->whereHas('enrollments', function ($q) {
+                $q->whereHas('course', function ($cq) {
+                    $cq->where('teacher_id', auth()->user()->teacher?->id);
+                });
+            });
+        }
+
+        return $query;
+    }
+
     protected static ?string $model = Student::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;

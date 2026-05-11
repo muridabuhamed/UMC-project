@@ -12,12 +12,18 @@ class WeeklyScheduleWidget extends BaseWidget
     protected static ?int $sort = 4;
     protected int | string | array $columnSpan = 'full';
 
+    public static function canView(): bool
+    {
+        return auth()->user()->hasAnyRole(['super_admin', 'teacher']);
+    }
+
     public function table(Table $table): Table
     {
         return $table
             ->query(
                 Schedule::query()
                     ->where('day_of_week', now()->format('l'))
+                    ->when(auth()->user()->isTeacher(), fn($q) => $q->where('teacher_id', auth()->user()->teacher?->id))
                     ->orderBy('start_time')
             )
             ->columns([

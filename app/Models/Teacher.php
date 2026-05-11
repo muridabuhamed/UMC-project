@@ -14,6 +14,11 @@ class Teacher extends Model
         'bio',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function courses(): HasMany
     {
         return $this->hasMany(Course::class);

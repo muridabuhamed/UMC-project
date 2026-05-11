@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class GradeResource extends Resource
 {
@@ -23,6 +24,23 @@ class GradeResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
 
     protected static \UnitEnum|string|null $navigationGroup = 'Academic';
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (auth()->user()->isTeacher()) {
+            return $query->whereHas('student', function ($q) {
+                $q->whereHas('enrollments', function ($eq) {
+                    $eq->whereHas('course', function ($cq) {
+                        $cq->where('teacher_id', auth()->user()->teacher?->id);
+                    });
+                });
+            });
+        }
+
+        return $query;
+    }
 
     public static function form(Schema $schema): Schema
     {

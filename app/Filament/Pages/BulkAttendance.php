@@ -30,6 +30,11 @@ class BulkAttendance extends Page implements HasForms, HasActions
     protected static \UnitEnum|string|null $navigationGroup = 'Academic';
     protected string $view = 'filament.pages.bulk-attendance';
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasAnyRole(['super_admin', 'teacher']);
+    }
+
     public ?array $data = [];
 
     public function mount(): void
@@ -48,7 +53,13 @@ class BulkAttendance extends Page implements HasForms, HasActions
                     ->schema([
                         Select::make('course_id')
                             ->label('Course')
-                            ->options(Course::pluck('name', 'id'))
+                            ->options(function () {
+                                $query = Course::query();
+                                if (auth()->user()->isTeacher()) {
+                                    $query->where('teacher_id', auth()->user()->teacher?->id);
+                                }
+                                return $query->pluck('name', 'id');
+                            })
                             ->searchable()
                             ->required()
                             ->live()
