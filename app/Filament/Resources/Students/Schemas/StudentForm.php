@@ -38,6 +38,12 @@ class StudentForm
                     ->helperText('Generate this using the AI button on the top right.')
                     ->rows(5)
                     ->columnSpanFull(),
+
+                \Filament\Forms\Components\Textarea::make('recommendations')
+                    ->label('Academic Recommendations')
+                    ->helperText('AI-suggested electives and learning strategies.')
+                    ->rows(5)
+                    ->columnSpanFull(),
             ]);
     }
 }

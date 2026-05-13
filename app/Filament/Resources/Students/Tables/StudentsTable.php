@@ -67,16 +67,47 @@ class StudentsTable
                             ->default('neutral')
                             ->required(),
                     ])
-                    ->action(function ($record, array $data) {
-                        $record->communicationLogs()->create([
-                            ...$data,
+                    ->action(function ($record, $data) {
+                        \App\Models\CommunicationLog::create([
+                            'student_id' => $record->id,
                             'user_id' => auth()->id(),
+                            'contact_date' => $data['contact_date'],
+                            'contact_type' => $data['contact_type'],
+                            'subject' => $data['subject'],
+                            'notes' => $data['notes'],
+                            'mood' => $data['mood'],
                         ]);
 
                         \Filament\Notifications\Notification::make()
-                            ->title('Communication Logged')
+                            ->title('Contact Logged')
                             ->success()
                             ->send();
+                    }),
+                \Filament\Actions\Action::make('ai_pathway')
+                    ->label('AI Pathway')
+                    ->icon('heroicon-o-academic-cap')
+                    ->color('info')
+                    ->requiresConfirmation()
+                    ->action(function ($record) {
+                        $grades = $record->grades()->with('enrollment.course')->get();
+                        $allCourses = \App\Models\Course::with('department')->get();
+                        
+                        $context = "STUDENT DATA:\nName: {$record->name}\nAcademic Record: " . $grades->map(fn($g) => "{$g->enrollment->course->name}: {$g->score}%")->join(', ') . "\n\nAVAILABLE COURSES:\n" . $allCourses->map(fn($c) => "- {$c->name}")->join("\n");
+                        
+                        $prompt = "Provide a CONCISE summary using 3 bullet points: Learning Style, 2 Recommended Electives, and 1 Support Strategy. Use Markdown.";
+
+                        try {
+                            $result = \Gemini\Laravel\Facades\Gemini::generativeModel('gemini-flash-latest')->generateContent($prompt . "\n\n" . $context);
+                            $record->update(['recommendations' => $result->text()]);
+                            
+                            \Filament\Notifications\Notification::make()
+                                ->title('Pathway Generated')
+                                ->success()
+                                ->send();
+                        } catch (\Exception $e) {
+                            \Filament\Notifications\Notification::make()
+                                ->title('Failed')->danger()->send();
+                        }
                     }),
                 ViewAction::make(),
                 EditAction::make(),

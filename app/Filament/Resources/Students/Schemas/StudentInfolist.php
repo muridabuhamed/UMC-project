@@ -71,6 +71,20 @@ class StudentInfolist
                             ->columnSpanFull()
                             ->color('indigo'),
                     ]),
+
+                \Filament\Schemas\Components\Section::make('Future Academic Roadmap')
+                    ->description('AI-driven suggestions for electives and learning growth.')
+                    ->icon('heroicon-o-map')
+                    ->collapsible()
+                    ->schema([
+                        TextEntry::make('recommendations')
+                            ->label('')
+                            ->placeholder('No roadmap generated yet. Click the "AI Academic Pathway" button above!')
+                            ->markdown()
+                            ->prose()
+                            ->columnSpanFull()
+                            ->color('info'),
+                    ]),
             ]);
     }
 }
