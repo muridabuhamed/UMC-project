@@ -57,6 +57,20 @@ class StudentInfolist
                             ->color('warning')
                             ->icon('heroicon-o-book-open'),
                     ]),
+
+                \Filament\Schemas\Components\Section::make('AI Counselor Summary')
+                    ->description('Automatically generated insights based on performance and behavior.')
+                    ->icon('heroicon-o-sparkles')
+                    ->collapsible()
+                    ->schema([
+                        TextEntry::make('summary')
+                            ->label('')
+                            ->placeholder('No summary generated yet. Click the sparkle button above to generate one!')
+                            ->markdown()
+                            ->prose()
+                            ->columnSpanFull()
+                            ->color('indigo'),
+                    ]),
             ]);
     }
 }

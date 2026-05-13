@@ -36,7 +36,7 @@ class StudentsTable
                     ->exporter(\App\Filament\Exports\StudentExporter::class),
             ])
             ->recordActions([
-                \Filament\Tables\Actions\Action::make('log_contact')
+                \Filament\Actions\Action::make('log_contact')
                     ->label('Log Contact')
                     ->icon('heroicon-o-chat-bubble-left-right')
                     ->color('success')

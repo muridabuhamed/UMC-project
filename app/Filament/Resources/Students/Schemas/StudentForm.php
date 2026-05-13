@@ -32,6 +32,12 @@ class StudentForm
                     ->numeric()
                     ->default(1)
                     ->required(),
+
+                \Filament\Forms\Components\Textarea::make('summary')
+                    ->label('AI Report Summary')
+                    ->helperText('Generate this using the AI button on the top right.')
+                    ->rows(5)
+                    ->columnSpanFull(),
             ]);
     }
 }

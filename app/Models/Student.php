@@ -14,6 +14,7 @@ class Student extends Model
         'student_number',
         'department_id',
         'year',
+        'summary',
     ];
 
     public function department(): BelongsTo
