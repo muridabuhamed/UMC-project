@@ -64,6 +64,7 @@ class StudentResource extends Resource
             RelationManagers\EnrollmentsRelationManager::class,
             RelationManagers\GradesRelationManager::class,
             RelationManagers\AttendancesRelationManager::class,
+            RelationManagers\CommunicationLogsRelationManager::class,
         ];
     }
 
