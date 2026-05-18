@@ -1,0 +1,92 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+@source '../../../../vendor/filament/**/*.blade.php';
+@source '../../../../app/Filament/**/*.php';
+@source '../../../../resources/views/filament/**/*.blade.php';
+@source '../../../../resources/views/livewire/**/*.blade.php';
+
+/* Custom Theme Overrides for Premium SaaS Feel */
+@layer components {
+    /* Glassmorphism for Sidebars */
+    .fi-sidebar {
+        background-color: rgba(255, 255, 255, 0.75) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border-right: 1px solid rgba(226, 232, 240, 0.6) !important;
+    }
+
+    .dark .fi-sidebar {
+        background-color: rgba(15, 23, 42, 0.75) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    /* Modals with frosted glass */
+    .fi-modal-window {
+        background-color: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .dark .fi-modal-window {
+        background-color: rgba(15, 23, 42, 0.75) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /* Topbar Styling */
+    .fi-topbar {
+        background-color: rgba(255, 255, 255, 0.7) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.4) !important;
+    }
+
+    .dark .fi-topbar {
+        background-color: rgba(15, 23, 42, 0.7) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    /* Premium Micro-animations for Table Rows */
+    .fi-ta-record {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    .fi-ta-record:hover {
+        transform: translateY(-2px) scale(1.002);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+        z-index: 10;
+        position: relative;
+        background-color: #ffffff !important;
+    }
+
+    .dark .fi-ta-record:hover {
+        background-color: rgba(30, 41, 59, 0.9) !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* Subtle lift for dashboard stat cards */
+    .fi-wi-stats-overview-stat {
+        transition: all 0.3s ease !important;
+    }
+    .fi-wi-stats-overview-stat:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08) !important;
+        border-color: rgba(99, 102, 241, 0.3) !important;
+    }
+    .dark .fi-wi-stats-overview-stat:hover {
+        box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.5) !important;
+        border-color: rgba(99, 102, 241, 0.3) !important;
+    }
+
+    /* Page Content background gradient to match glassmorphism */
+    .fi-main {
+        background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%) !important;
+    }
+    
+    .dark .fi-main {
+        background: linear-gradient(135deg, #0f172a 0%, #020617 100%) !important;
+    }
+}

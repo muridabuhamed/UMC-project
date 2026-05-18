@@ -34,10 +34,15 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('UMC School Manager')
             ->databaseNotifications()
             ->colors([
-                'primary' => \Filament\Support\Colors\Color::Indigo,
+                'primary' => \Filament\Support\Colors\Color::Violet,
                 'gray' => \Filament\Support\Colors\Color::Slate,
+                'info' => \Filament\Support\Colors\Color::Blue,
+                'success' => \Filament\Support\Colors\Color::Emerald,
+                'warning' => \Filament\Support\Colors\Color::Amber,
+                'danger' => \Filament\Support\Colors\Color::Rose,
             ])
             ->font('Outfit')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -46,6 +51,10 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
             ])
+            ->renderHook(
+                \Filament\View\PanelsRenderHook::HEAD_END,
+                fn (): string => \Illuminate\Support\Facades\Blade::render('@vite(\'resources/css/filament/admin/custom.css\')'),
+            )
             ->renderHook(
                 PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
                 fn (): string => view('filament.hooks.ai-command-center')->render(),
