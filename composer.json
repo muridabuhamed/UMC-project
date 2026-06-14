@@ -14,7 +14,8 @@
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "mozex/anthropic-laravel": "*",
-        "openai-php/client": "*"
+        "openai-php/client": "*",
+        "statamic/cms": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -40,6 +41,9 @@
         }
     },
     "scripts": {
+        "pre-update-cmd": [
+            "Statamic\\Console\\Composer\\Scripts::preUpdateCmd"
+        ],
         "setup": [
             "composer install",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
@@ -88,7 +92,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "pixelfear/composer-dist-plugin": true
         }
     },
     "minimum-stability": "stable",

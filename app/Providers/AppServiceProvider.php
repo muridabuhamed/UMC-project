@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Statamic\Widgets\Widget::register(\App\Widgets\SchoolStatsWidget::class);
+        \Statamic\Widgets\Widget::register(\App\Widgets\QuickLinksWidget::class);
+        \Statamic\Widgets\Widget::register(\App\Widgets\RecentActivityWidget::class);
     }
 }

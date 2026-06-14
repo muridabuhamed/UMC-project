@@ -1,0 +1,30 @@
+tree:
+  -
+    id: 10e14ecc-d0af-414c-b9e3-8c854717b7b9
+    entry: d60eb098-b6b2-45b2-aeb1-a74c62bd750b
+    title: Murid
+    children:
+      -
+        id: 9ad675c5-2e0a-4d1e-8845-a73bf19e1a16
+        entry: d60eb098-b6b2-45b2-aeb1-a74c62bd750b
+        title: Help
+      -
+        id: ee07b537-bcef-4899-880b-a553840a114a
+        entry: d60eb098-b6b2-45b2-aeb1-a74c62bd750b
+        title: Photos
+      -
+        id: 6929053e-1bf6-42aa-b88c-df4ea38f4ab0
+        entry: d60eb098-b6b2-45b2-aeb1-a74c62bd750b
+        title: 'About us'
+      -
+        id: 4a0a9c2b-0295-493e-b3b7-9be65f4aafee
+        entry: d60eb098-b6b2-45b2-aeb1-a74c62bd750b
+        title: JOBS
+  -
+    id: 67377458-5b16-4edd-ba0e-5d20857c864f
+    entry: d60eb098-b6b2-45b2-aeb1-a74c62bd750b
+    children:
+      -
+        id: a6d5efa6-500d-4130-91ab-5c743c1e7fcd
+        entry: d60eb098-b6b2-45b2-aeb1-a74c62bd750b
+        title: 'About us'
